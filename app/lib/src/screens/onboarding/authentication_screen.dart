@@ -1,5 +1,5 @@
 import 'package:app/src/screens/onboarding/login_screen.dart';
-import 'package:app/src/screens/onboarding/signup_screen.dart';
+import 'package:app/src/screens/onboarding/reset_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -55,20 +55,22 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                         children: [
                           Center(
                               child: Text(
-                            showLoginForm ? 'LOGIN' : 'SIGN UP',
+                            showLoginForm ? 'RESET' : 'LOGIN',
                             style: Theme.of(context).textTheme.headline2,
                           )),
                           Padding(
                             padding: const EdgeInsets.all(32.0),
                             child: showLoginForm
-                                ? LoginForm(
+                                ?
+                                ResetForm(
                                     authenticationBloc: authenticationBloc,
                                     state: state,
                                   )
-                                : SignUpForm(
+                                : 
+                                 LoginForm(
                                     authenticationBloc: authenticationBloc,
                                     state: state,
-                                  ),
+                                ),
                           ),
                           showLoginForm
                               ? SizedBox()
@@ -78,26 +80,11 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       SizedBox(
-                                        height: 38,
+                                        height: 12,
                                       ),
-                                      Text('Already have an account?'),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      RaisedButton(
-                                          color: Theme.of(context).primaryColor,
-                                          textColor: Colors.white,
-                                          padding: const EdgeInsets.all(16),
-                                          shape: new RoundedRectangleBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      8.0)),
+                                      FlatButton(
                                           child: Text(
-                                            'Login',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1,
-                                          ),
+                                            'Forget password?'),
                                           onPressed: () {
                                             setState(() {
                                               showLoginForm = true;

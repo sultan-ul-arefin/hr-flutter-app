@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shared/main.dart';
 
-class SignUpForm extends StatefulWidget {
+class ResetForm extends StatefulWidget {
   final AuthenticationBloc authenticationBloc;
   final AuthenticationState state;
-  SignUpForm({this.authenticationBloc, this.state});
+  ResetForm({this.authenticationBloc, this.state});
   @override
-  _SignUpFormState createState() => _SignUpFormState();
+  _ResetFormState createState() => _ResetFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class _ResetFormState extends State<ResetForm> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
   final _emailController = TextEditingController();
@@ -37,24 +37,6 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          SizedBox(
-            height: 12,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'Password',
-              filled: true,
-              isDense: true,
-            ),
-            obscureText: true,
-            controller: _passwordController,
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Password is required.';
-              }
-              return null;
-            },
-          ),
           const SizedBox(
             height: 16,
           ),
@@ -70,7 +52,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           Theme.of(context).textTheme.bodyText1.color,
                     )
                   : Text(
-                      'Sign Up',
+                      'Reset to email',
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
               onPressed: () {
