@@ -12,10 +12,11 @@ class AuthenticationRepository {
 
   Future<dynamic> loginWithIdAndPassword(
       String loginId, String password) async {
+    print({'email': loginId, 'password': password});
     await Future.delayed(Duration(seconds: 1)); // simulate a network delay
     final response = await ApiSdk.loginWithIdAndPassword(
-        {'loginId': loginId, 'password': password});
-
+        {'email': loginId, 'password': password});
+    print(response);
     return response;
   }
 

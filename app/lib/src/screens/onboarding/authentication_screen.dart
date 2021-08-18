@@ -63,10 +63,11 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                           shrinkWrap: true,
                           children: [
                             Center(
-                                child: Text(
-                              showLoginForm ? 'RESET' : 'LOGIN',
-                              style: Theme.of(context).textTheme.headline4,
-                            )),
+                              child: Text(
+                                showLoginForm ? 'RESET' : 'LOGIN',
+                                style: Theme.of(context).textTheme.headline4,
+                              ),
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(32.0),
                               child: showLoginForm

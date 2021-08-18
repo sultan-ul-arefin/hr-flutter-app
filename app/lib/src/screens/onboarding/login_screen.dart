@@ -72,7 +72,7 @@ class _LoginFormState extends State<LoginForm> {
           RaisedButton(
               color: Theme.of(context).primaryColor,
               textColor: Colors.white,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(12),
               shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(8.0)),
               child: widget.state is AuthenticationLoading
