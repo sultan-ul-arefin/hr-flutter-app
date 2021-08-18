@@ -15,20 +15,19 @@ class UserLogOut extends AuthenticationEvent {}
 
 class GetUserData extends AuthenticationEvent {}
 
-class UserSignUp extends AuthenticationEvent {
-  final String email;
-  final String password;
-  UserSignUp({@required this.email, this.password});
+class UserReset extends AuthenticationEvent {
+  final String userId;
+  UserReset({@required this.userId});
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [userId];
 }
 
 class UserLogin extends AuthenticationEvent {
-  final String email;
+  final String loginId;
   final String password;
-  UserLogin({@required this.email, this.password});
+  UserLogin({@required this.loginId, this.password});
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [loginId, password];
 }

@@ -2,8 +2,7 @@ import 'package:api_sdk/api_constants.dart';
 import 'package:api_sdk/rest/rest_api_handler_data.dart';
 
 class ApiSdk {
-
-  static loginWithEmailAndPassword(dynamic body) async {
+  static loginWithIdAndPassword(dynamic body) async {
     final response = await RestApiHandlerData.postData(
         '${apiConstants["auth"]}/login', body);
     return response;
@@ -20,6 +19,4 @@ class ApiSdk {
         await RestApiHandlerData.getData('${apiConstants["auth"]}/users/$id');
     return response;
   }
-
-
 }

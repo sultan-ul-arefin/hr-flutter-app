@@ -12,8 +12,8 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
-  final _emailController = TextEditingController();
-
+  final _loginIdController = TextEditingController();
+  var _passwordVisible = false;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -23,16 +23,16 @@ class _LoginFormState extends State<LoginForm> {
         children: <Widget>[
           TextFormField(
             decoration: InputDecoration(
-              labelText: 'Email address',
+              labelText: 'Login ID',
               filled: true,
               isDense: true,
             ),
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
+            controller: _loginIdController,
+            keyboardType: TextInputType.text,
             autocorrect: false,
             validator: (value) {
               if (value.isEmpty) {
-                return 'Email is required.';
+                return 'Login Id is required.';
               }
               return null;
             },
@@ -45,8 +45,19 @@ class _LoginFormState extends State<LoginForm> {
               labelText: 'Password',
               filled: true,
               isDense: true,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  color: Theme.of(context).hintColor,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _passwordVisible = !_passwordVisible;
+                  });
+                },
+              ),
             ),
-            obscureText: true,
+            obscureText: !_passwordVisible,
             controller: _passwordController,
             validator: (value) {
               if (value.isEmpty) {
@@ -73,7 +84,7 @@ class _LoginFormState extends State<LoginForm> {
               onPressed: () {
                 if (_key.currentState.validate()) {
                   widget.authenticationBloc.add(UserLogin(
-                      email: _emailController.text,
+                      loginId: _loginIdController.text,
                       password: _passwordController.text));
                 } else {}
               })

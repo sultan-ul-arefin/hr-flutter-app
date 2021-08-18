@@ -20,10 +20,6 @@ class AuthenticationBloc
       yield* _mapAppSignUpLoadedState(event);
     }
 
-    if (event is UserSignUp) {
-      yield* _mapUserSignupToState(event);
-    }
-
     if (event is UserLogin) {
       yield* _mapUserLoginState(event);
     }
@@ -57,39 +53,13 @@ class AuthenticationBloc
     }
   }
 
-  Stream<AuthenticationState> _mapUserSignupToState(UserSignUp event) async* {
-    final SharedPreferences sharedPreferences = await prefs;
-    yield AuthenticationLoading();
-    try {
-      await Future.delayed(Duration(milliseconds: 500)); // a simulated delay
-      final data = await authenticationService.signUpWithEmailAndPassword(
-          event.email, event.password);
-
-      if (data["error"] == null) {
-        final currentUser = UserData.fromJson(data);
-        if (currentUser != null) {
-          sharedPreferences.setString('authtoken', currentUser.token);
-          sharedPreferences.setInt('userId', currentUser.id);
-          yield AppAutheticated();
-        } else {
-          yield AuthenticationNotAuthenticated();
-        }
-      } else {
-        yield AuthenticationFailure(message: data["error"]);
-      }
-    } catch (e) {
-      yield AuthenticationFailure(
-          message: e.toString() ?? 'An unknown error occurred');
-    }
-  }
-
   Stream<AuthenticationState> _mapUserLoginState(UserLogin event) async* {
     final SharedPreferences sharedPreferences = await prefs;
     yield AuthenticationLoading();
     try {
       await Future.delayed(Duration(milliseconds: 500)); // a simulated delay
-      final data = await authenticationService.loginWithEmailAndPassword(
-          event.email, event.password);
+      final data = await authenticationService.loginWithIdAndPassword(
+          event.loginId, event.password);
       if (data["error"] == null) {
         final currentUser = Token.fromJson(data);
         if (currentUser != null) {
