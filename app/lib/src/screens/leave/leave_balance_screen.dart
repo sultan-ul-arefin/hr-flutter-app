@@ -10,6 +10,7 @@ class LeaveBalanceScreen extends StatelessWidget {
       AuthenticationBlocController().authenticationBloc;
   @override
   Widget build(BuildContext context) {
+    seriesList = _createSampleData();
     return WillPopScope(
         onWillPop: () async => false,
         child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
@@ -29,17 +30,46 @@ class LeaveBalanceScreen extends StatelessWidget {
                     ),
                   ),
                   body: Center(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      charts.BarChart(
-                        seriesList,
-                        animate: animate,
-                        vertical: false,
-                      )
-                    ],
-                  )),
+                    child: Container(
+                      height: 600,
+                      alignment: Alignment.topCenter,
+                      padding: const EdgeInsets.all(8),
+                      child: Card(
+                        borderOnForeground: true,
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  child: charts.BarChart(
+                                seriesList,
+                                animate: animate,
+                                vertical: false,
+                              ))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  persistentFooterButtons: [
+                    Container(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: FlatButton(
+                              child: Text('Application For Leave'),
+                              color: Colors.black,
+                              onPressed: () {},
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                   bottomNavigationBar: Container(
                     height: 40.0,
                     child: Center(
@@ -53,25 +83,36 @@ class LeaveBalanceScreen extends StatelessWidget {
                 );
               }
             }));
+  }
 
-    /// Create one series with sample hard coded data.
-    List<charts.Series<OrdinalSales, String>> _createSampleData() {
-      final data = [
-        new OrdinalSales('2014', 5),
-        new OrdinalSales('2015', 25),
-        new OrdinalSales('2016', 100),
-        new OrdinalSales('2017', 75),
-      ];
+  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
+    final data = [
+      OrdinalSales('2014', 5),
+      OrdinalSales('2015', 25),
+      OrdinalSales('2016', 100),
+      OrdinalSales('2017', 75),
+    ];
 
-      return [
-        new charts.Series<OrdinalSales, String>(
-          id: 'Sales',
-          domainFn: (OrdinalSales sales, _) => sales.year,
-          measureFn: (OrdinalSales sales, _) => sales.sales,
-          data: data,
-        )
-      ];
-    }
+    return [
+      charts.Series<OrdinalSales, String>(
+        id: 'Sales',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: data,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Sales',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: data,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Sales',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: data,
+      )
+    ];
   }
 }
 

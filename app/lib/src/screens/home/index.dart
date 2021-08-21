@@ -170,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  backgroundColor: Colors.white70,
+                  backgroundColor: Colors.white60,
                 );
               }
               return Scaffold(
