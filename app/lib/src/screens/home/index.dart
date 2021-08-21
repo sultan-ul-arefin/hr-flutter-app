@@ -1,6 +1,6 @@
 // home screen contents
 import 'package:app/src/config/image_constants.dart';
-import 'package:app/src/screens/attendance/attendance_screen.dart';
+import 'package:app/src/screens/attendance/index.dart';
 import 'package:app/src/widgets/cache_image_widget.dart';
 import 'package:app/src/screens/home/home_menu_screen.dart';
 import 'package:flutter/material.dart';

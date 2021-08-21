@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/main.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
-class NewScreen extends StatelessWidget {
+class LeaveBalanceScreen extends StatelessWidget {
+  List<charts.Series> seriesList;
+  bool animate;
   final AuthenticationBloc authenticationBloc =
       AuthenticationBlocController().authenticationBloc;
   @override
@@ -17,7 +20,7 @@ class NewScreen extends StatelessWidget {
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
-                    title: Text("Attendance"),
+                    title: Text("Leave Balance"),
                     leading: InkWell(
                       onTap: () {
                         Navigator.pop(context);
@@ -29,7 +32,13 @@ class NewScreen extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [],
+                    children: [
+                      charts.BarChart(
+                        seriesList,
+                        animate: animate,
+                        vertical: false,
+                      )
+                    ],
                   )),
                   bottomNavigationBar: Container(
                     height: 40.0,
@@ -44,5 +53,31 @@ class NewScreen extends StatelessWidget {
                 );
               }
             }));
+
+    /// Create one series with sample hard coded data.
+    List<charts.Series<OrdinalSales, String>> _createSampleData() {
+      final data = [
+        new OrdinalSales('2014', 5),
+        new OrdinalSales('2015', 25),
+        new OrdinalSales('2016', 100),
+        new OrdinalSales('2017', 75),
+      ];
+
+      return [
+        new charts.Series<OrdinalSales, String>(
+          id: 'Sales',
+          domainFn: (OrdinalSales sales, _) => sales.year,
+          measureFn: (OrdinalSales sales, _) => sales.sales,
+          data: data,
+        )
+      ];
+    }
   }
+}
+
+class OrdinalSales {
+  final String year;
+  final int sales;
+
+  OrdinalSales(this.year, this.sales);
 }

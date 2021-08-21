@@ -39,6 +39,7 @@ dependencies:
   cached_network_image: ^2.3.3
   shared:
     path: ../shared
+  charts_flutter: ^0.11.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

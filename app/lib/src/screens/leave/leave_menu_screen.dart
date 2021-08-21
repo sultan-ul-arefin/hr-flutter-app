@@ -1,14 +1,14 @@
+import 'package:app/src/screens/leave/leave_balance_screen.dart';
 import 'package:app/src/utils/menu.dart';
 import 'package:flutter/material.dart';
 
-class AttendanceMenu extends StatelessWidget {
+class LeaveMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<MenuData> menu = [
-      MenuData(Icons.fingerprint, 'Punch'),
-      MenuData(Icons.book, 'My Attendance'),
-      MenuData(Icons.share_location, 'GPS Attendance'),
-      MenuData(Icons.alarm_on, 'Time Attendance'),
+      MenuData(Icons.directions_walk, 'Leave Application'),
+      MenuData(Icons.assignment_turned_in, 'Leave Approval'),
+      MenuData(Icons.next_week, 'Compensatory Leave Certificate'),
     ];
     return Container(
         child: Scrollbar(
@@ -38,7 +38,15 @@ class AttendanceMenu extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0)),
                     child: InkWell(
                       onTap: () {
-                        print(menu[index].title);
+                        switch (menu[index].title) {
+                          case "Leave Application":
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LeaveBalanceScreen()),
+                            );
+                            break;
+                        }
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,8 +1,9 @@
+import 'package:app/src/screens/attendance/attendance_menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/main.dart';
 
-class NewScreen extends StatelessWidget {
+class AttendanceScreen extends StatelessWidget {
   final AuthenticationBloc authenticationBloc =
       AuthenticationBlocController().authenticationBloc;
   @override
@@ -29,7 +30,9 @@ class NewScreen extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [],
+                    children: [
+                      AttendanceMenu(),
+                    ],
                   )),
                   bottomNavigationBar: Container(
                     height: 40.0,

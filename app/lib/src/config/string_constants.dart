@@ -1,6 +1,6 @@
 library constants;
 
-// Onboarding Screens
+// authencation Screens
 const String app_name = "APP NAME";
 
 // tabs

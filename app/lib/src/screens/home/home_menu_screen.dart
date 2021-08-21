@@ -1,4 +1,5 @@
-import 'package:app/src/screens/attendance/attendance_screen.dart';
+import 'package:app/src/screens/attendance/index.dart';
+import 'package:app/src/screens/leave/index.dart';
 import 'package:app/src/utils/menu.dart';
 import 'package:flutter/material.dart';
 
@@ -46,12 +47,21 @@ class HomeMenuScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0)),
                     child: InkWell(
                       onTap: () {
-                        if (menu[index].title == "Attendance") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AttendanceScreen()),
-                          );
+                        switch (menu[index].title) {
+                          case "Attendance":
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AttendanceScreen()),
+                            );
+                            break;
+                          case "Leave":
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LeaveScreen()),
+                            );
+                            break;
                         }
                       },
                       child: Column(
