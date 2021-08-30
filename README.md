@@ -1,6 +1,6 @@
 ## Features
 
-* **Folder Structure:** Flutter Starter comes with a well-defined folder structure. Devs can easily navigate it and add files where necessary.
+* **Folder Structure:** Well-defined folder structure. Devs can easily navigate it and add files where necessary.
 
 * **Style Guide:** This kit helps you to build a Style Guide for your app. You can add your image and font assets, splash screen, color constants and theme data. These are available for use wherever required in your project.
 
