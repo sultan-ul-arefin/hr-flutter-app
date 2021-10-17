@@ -11,8 +11,7 @@ class ResetForm extends StatefulWidget {
 
 class _ResetFormState extends State<ResetForm> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
-  final _passwordController = TextEditingController();
-  final _emailController = TextEditingController();
+  final _resetController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +26,8 @@ class _ResetFormState extends State<ResetForm> {
               filled: true,
               isDense: true,
             ),
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
+            controller: _resetController,
+            keyboardType: TextInputType.text,
             autocorrect: false,
             validator: (value) {
               if (value.isEmpty) {
@@ -57,9 +56,8 @@ class _ResetFormState extends State<ResetForm> {
                     ),
               onPressed: () {
                 if (_key.currentState.validate()) {
-                  widget.authenticationBloc.add(UserSignUp(
-                      email: _emailController.text,
-                      password: _passwordController.text));
+                  widget.authenticationBloc
+                      .add(UserReset(userId: _resetController.text));
                 } else {
                   print('Form not validated');
                 }
