@@ -2,7 +2,7 @@
 import 'package:app/src/config/image_constants.dart';
 import 'package:app/src/screens/attendance/index.dart';
 import 'package:app/src/widgets/cache_image_widget.dart';
-import 'package:app/src/screens/home/home_menu_screen.dart';
+import 'package:app/src/screens/home/home_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/main.dart';
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   body: Center(
                     // everything at home
-                    child: HomeMenuScreen(),
+                    child: HomeMenu(),
                   ),
                   drawer: Drawer(
                     child: ListView(

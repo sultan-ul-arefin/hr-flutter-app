@@ -1,3 +1,4 @@
+import 'package:app/src/screens/leave/leave_application_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/main.dart';
@@ -10,7 +11,7 @@ class LeaveBalanceScreen extends StatelessWidget {
       AuthenticationBlocController().authenticationBloc;
   @override
   Widget build(BuildContext context) {
-    seriesList = _createSampleData();
+    seriesList = _createLeaveData();
     return WillPopScope(
         onWillPop: () async => false,
         child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
@@ -29,28 +30,29 @@ class LeaveBalanceScreen extends StatelessWidget {
                       child: Icon(Icons.arrow_back_ios_new),
                     ),
                   ),
-                  body: Center(
-                    child: Container(
-                      height: 600,
-                      alignment: Alignment.topCenter,
-                      padding: const EdgeInsets.all(8),
-                      child: Card(
-                        borderOnForeground: true,
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                  child: charts.BarChart(
-                                seriesList,
-                                animate: animate,
-                                vertical: false,
-                              ))
-                            ],
-                          ),
+                  body: Container(
+                    height: 600,
+                    alignment: Alignment.topCenter,
+                    padding: const EdgeInsets.all(8),
+                    child: Card(
+                      borderOnForeground: true,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                child: charts.BarChart(
+                              seriesList,
+                              animate: animate,
+                              vertical: false,
+                              // defaultRenderer: charts.BarRendererConfig(
+                              //     barRendererDecorator:
+                              //         charts.BarLabelDecorator())
+                            ))
+                          ],
                         ),
                       ),
                     ),
@@ -63,7 +65,14 @@ class LeaveBalanceScreen extends StatelessWidget {
                             child: FlatButton(
                               child: Text('Application For Leave'),
                               color: Colors.black,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          LeaveApplicationScreen()),
+                                );
+                              },
                             ),
                           )
                         ],
@@ -85,40 +94,57 @@ class LeaveBalanceScreen extends StatelessWidget {
             }));
   }
 
-  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
-    final data = [
-      OrdinalSales('2014', 5),
-      OrdinalSales('2015', 25),
-      OrdinalSales('2016', 100),
-      OrdinalSales('2017', 75),
+  static List<charts.Series<LeaveBalance, String>> _createLeaveData() {
+    final data1 = [
+      LeaveBalance('Sabustitute Leave', 10),
+      LeaveBalance('Sick Leave', 5),
+      LeaveBalance('Leave Without Pay', 15),
+      LeaveBalance('Compenstory Leave', 7),
+      LeaveBalance('Casual Leave', 8),
+      LeaveBalance('Annual Leave', 30),
     ];
-
+    final data2 = [
+      LeaveBalance('Sabustitute Leave', 3),
+      LeaveBalance('Sick Leave', 7),
+      LeaveBalance('Leave Without Pay', 2),
+      LeaveBalance('Compenstory Leave', 6),
+      LeaveBalance('Casual Leave', 2),
+      LeaveBalance('Annual Leave', 10),
+    ];
+    final data3 = [
+      LeaveBalance('Sabustitute Leave', 7),
+      LeaveBalance('Sick Leave', 9),
+      LeaveBalance('Leave Without Pay', 12),
+      LeaveBalance('Compenstory Leave', 3),
+      LeaveBalance('Casual Leave', 9),
+      LeaveBalance('Annual Leave', 21),
+    ];
     return [
-      charts.Series<OrdinalSales, String>(
-        id: 'Sales',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: data,
+      charts.Series<LeaveBalance, String>(
+        id: 'LeaveBalance',
+        domainFn: (LeaveBalance leave, _) => leave.name,
+        measureFn: (LeaveBalance leave, _) => leave.day,
+        data: data1,
       ),
-      charts.Series<OrdinalSales, String>(
-        id: 'Sales',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: data,
+      charts.Series<LeaveBalance, String>(
+        id: 'LeaveBalance',
+        domainFn: (LeaveBalance leave, _) => leave.name,
+        measureFn: (LeaveBalance leave, _) => leave.day,
+        data: data2,
       ),
-      charts.Series<OrdinalSales, String>(
-        id: 'Sales',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: data,
+      charts.Series<LeaveBalance, String>(
+        id: 'LeaveBalance',
+        domainFn: (LeaveBalance leave, _) => leave.name,
+        measureFn: (LeaveBalance leave, _) => leave.day,
+        data: data3,
       )
     ];
   }
 }
 
-class OrdinalSales {
-  final String year;
-  final int sales;
+class LeaveBalance {
+  final String name;
+  final int day;
 
-  OrdinalSales(this.year, this.sales);
+  LeaveBalance(this.name, this.day);
 }

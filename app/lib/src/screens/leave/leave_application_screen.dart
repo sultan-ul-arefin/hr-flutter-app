@@ -1,9 +1,9 @@
-import 'package:app/src/screens/attendance/attendance_menu.dart';
+import 'package:app/src/screens/leave/leave_application_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/main.dart';
 
-class AttendanceScreen extends StatelessWidget {
+class LeaveApplicationScreen extends StatelessWidget {
   final AuthenticationBloc authenticationBloc =
       AuthenticationBlocController().authenticationBloc;
   @override
@@ -18,7 +18,7 @@ class AttendanceScreen extends StatelessWidget {
                 return Scaffold(
                   appBar: AppBar(
                     centerTitle: true,
-                    title: Text("Attendance"),
+                    title: Text("Leave Application"),
                     leading: InkWell(
                       onTap: () {
                         Navigator.pop(context);
@@ -30,9 +30,7 @@ class AttendanceScreen extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      AttendanceMenu(),
-                    ],
+                    children: [LeaveApplicationForm()],
                   )),
                   bottomNavigationBar: Container(
                     height: 40.0,

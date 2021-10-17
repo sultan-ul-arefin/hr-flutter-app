@@ -1,3 +1,4 @@
+import 'package:app/src/screens/attendance/my_attendance_screen.dart';
 import 'package:app/src/utils/menu.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,15 @@ class AttendanceMenu extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0)),
                     child: InkWell(
                       onTap: () {
-                        print(menu[index].title);
+                        switch (menu[index].title) {
+                          case "My Attendance":
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyAttendanceScreen()),
+                            );
+                            break;
+                        }
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

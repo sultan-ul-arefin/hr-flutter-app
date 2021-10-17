@@ -3,7 +3,7 @@ import 'package:app/src/screens/leave/index.dart';
 import 'package:app/src/utils/menu.dart';
 import 'package:flutter/material.dart';
 
-class HomeMenuScreen extends StatelessWidget {
+class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<MenuData> menu = [

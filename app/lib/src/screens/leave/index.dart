@@ -1,4 +1,4 @@
-import 'package:app/src/screens/leave/leave_menu_screen.dart';
+import 'package:app/src/screens/leave/leave_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/main.dart';
